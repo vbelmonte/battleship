@@ -107,7 +107,7 @@ test('Computer receives an attack, which is counted as a "hit"/true, and results
   expect(computer.getTurn()).not.toBeTruthy();
 });
 
-test('Computer knows to send an attack to a square that has not been hit yet by using a list of available squares', () => {
+test('(1,1) on grid is already hit. Computer knows to send an attack to an available square (2,2) by using a list of available squares', () => {
   const player1 = Object.create(player());
   const computer = Object.create(player());
   const p1GameBoard = player1.getGameBoard();
@@ -117,19 +117,27 @@ test('Computer knows to send an attack to a square that has not been hit yet by 
   const mockReceiveAttack = jest.fn((x, y) => p1GameBoard.receiveAttack(x, y));
   player1.receiveAttack = mockReceiveAttack;
 
-  const mockSendAttack = jest.fn(opponent => opponent.receiveAttack(1, 1));
+  const mockSendAttack = jest.fn((opponent, x, y) => opponent.receiveAttack(1, 1));
   computer.sendAttack = mockSendAttack;
 
-  computer.sendAttack(player1);
+  const mockAI = jest.fn(() => {
+    if (p1GameBoard.getAvailableSquares()[1][1] === true) {
+      computer.sendAttack(player1, 1, 1);
+      return "hit (1,1)";
+    } else {
+      computer.sendAttack(player1, 2, 2);
+      return "hit (2,2)";
+    }
+  });
 
   const mockGamePlay = jest.fn(() => {
     player1.setTurn(false);
     computer.setTurn(true);
-
     computer.sendAttack(player1);
-    return computer.sendAttack(player1);
+
+    return mockAI();
   });
 
-  expect(mockGamePlay()).toMatch(/square already hit!/);
+  expect(mockGamePlay()).toMatch("hit (2,2)");
   
 });
