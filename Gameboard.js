@@ -12,9 +12,22 @@ function generateGrid() {
   return grid;
 }
 
+function generateAvailableSquares() {
+  let availableSquares = [];
+  for (let i = 0; i < 10; i+=1) {
+    availableSquares[i] = [];
+    for (let j = 0; j < 10; j+=1) {
+      availableSquares[i][j] = true;
+    }
+  }
+
+  return availableSquares;
+}
+
 export default function Gameboard() {
   let grid = generateGrid();
   let sunkShips = [];
+  const availableSquares = generateAvailableSquares();
 
   const getGrid = () => {
     return grid;
@@ -51,13 +64,19 @@ export default function Gameboard() {
   }
 
   const receiveAttack = (x, y) => {
-    if (grid[x][y] !== null) {
-      let ship = grid[x][y];
-      ship.hit();
-      determineSink(ship);
-    } else {
-      grid[x][y] = "miss";
+    if (availableSquares[x][y] === true) {
+      availableSquares[x][y] = false;
+
+      if (grid[x][y] !== null) {
+        let ship = grid[x][y];
+        ship.hit();
+        determineSink(ship);
+        return true;
+      } else {
+        return false;
+      }
     }
+    return 'square already hit!';
   }
 
   const getSunkShips = () => {
