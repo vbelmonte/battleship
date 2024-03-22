@@ -83,5 +83,9 @@ export default function Gameboard() {
     return sunkShips;
   }
 
-  return {getGrid, placeShip, receiveAttack, getSunkShips, checkAllShipsSunk};
+  const getAvailableSquares = () => {
+    return availableSquares;
+  }
+
+  return {getGrid, placeShip, receiveAttack, getSunkShips, checkAllShipsSunk, getAvailableSquares};
 }
