@@ -16,5 +16,11 @@ export default function player() {
     return turn;
   }
 
-  return { getGameBoard, setTurn, getTurn }
+  const receiveAttack = (x, y) => {
+    const result = gameBoard.receiveAttack(x, y);
+
+    return result;
+  }
+
+  return { getGameBoard, setTurn, getTurn, receiveAttack }
 }
