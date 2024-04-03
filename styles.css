@@ -55,11 +55,41 @@ table {
   --off-white: #EBEBEB;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2.0625rem;
+}
+
+h4 {
+  font-size: 1.75rem;
+}
+
+h5 {
+  font-size: 1.4375rem;
+}
+
+h6 {
+  font-size: 1.1875rem;
+}
+
 body {
   padding: 2rem;
+  font-family: "Press Start 2P", system-ui;
   font-size: 16px;
 
   background-color: var(--off-white);
+}
+
+div.centered {
+  display: flex;
+  justify-content: center;
 }
 
 header {
@@ -69,4 +99,25 @@ header {
 
 header img {
   height: 1.25rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.div-header {
+  border-bottom: solid 4px var(--black);
+}
+
+
+#message-container {
+  flex: 1;
+  max-width: 44rem;
+  border: solid 4px var(--black);
+}
+
+#message-container div {
+  padding: 0.5rem;
 }
