@@ -11,13 +11,131 @@
 	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div>
+  <div class="frame">
     <header>
       <div class="centered">
         <img src="./assets/Battleship_Logo.svg">
       </div>
     </header>
     <main>
+      <div class="game-area">
+        <div class="board-area">
+          <div class="fleets">
+            <h6>My Ships</h6>
+            <div class="fleets">
+              <div class="carrier piece" id="p1-carrier">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="battleship piece" id="p1-battleship">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="cruiser piece" id="p1-cruiser">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="submarine piece" id="p1-submarine">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="destroyer piece" id="p1-destroyer">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gameboard" id="p1-board">
+            <div class="cell">
+            </div>
+            <div class="ship ship-span ship-span-h-2 sunk">
+              <div class="cell ship-cell hit">
+              </div>
+              <div class="cell ship-cell hit">
+              </div>
+            </div>
+            <div class="cell miss">
+            </div>
+          </div>
+        </div>
+        <div class="board-area">
+          <div class="gameboard" id="computer-board">
+          </div>
+          <div class="fleets">
+            <h6>Opponent</h6>
+            <div class="fleets">
+              <div class="carrier piece" id="c-carrier">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="battleship piece" id="c-battleship">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="cruiser piece" id="c-cruiser">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="submarine piece" id="c-submarine">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="destroyer piece" id="c-destroyer">
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="message-container">
         <div class="div-header">
           <h6>Messages</h6>
