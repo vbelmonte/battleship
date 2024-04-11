@@ -1,4 +1,4 @@
-function createGameBoard(player) {
+function createGameBoardUI(player) {
   const board = document.getElementById(player + "-board");
 
   for (let i = 0;  i < 100; i++) {
@@ -73,4 +73,4 @@ function placeShipOnGameBoardUI(x, y, ship, orientation, player) {
   }
 }
 
-export {createGameBoard, placeShipOnGameBoardUI};
+export {createGameBoardUI, placeShipOnGameBoardUI};
