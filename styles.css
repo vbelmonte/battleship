@@ -227,7 +227,7 @@ main {
   background-color: var(--light-red);
 }
 
-.ship-cell {
+.gameboard .ship-cell {
   background-color: var(--periwinkle);
 }
 
@@ -243,6 +243,21 @@ main {
 .ship-span-h-2 {
   grid-template-columns: repeat(2, 1fr);
   grid-column: 2 / span 2;
+}
+
+.ship-span-h-3 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 2 / span 3;
+}
+
+.ship-span-h-4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-column: 2 / span 4;
+}
+
+.ship-span-h-5 {
+  grid-template-columns: repeat(5, 1fr);
+  grid-column: 2 / span 5;
 }
 
 .hit {
