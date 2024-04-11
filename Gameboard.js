@@ -47,18 +47,20 @@ export default function Gameboard() {
     }
   }
   
-  const placeShip = (x, y, shipSize, orientation) => {
-    const battleship = ship(shipSize);
+  const placeShip = (x, y, ship, orientation) => {
+    console.log("x: " + x);
+    console.log("y: " + y);
+    const shipSize = ship.getShipLength();
 
     if (orientation === "horizontal") {
-      let range = shipSize + y;
+      let range = shipSize + x;
       for (let i = x; i < range; i+=1) {
-        grid[i][y] = battleship;
+        grid[y][i] = ship;
       }
     } else {
       let range = shipSize + y;
       for (let i = y; i < range; i+=1) {
-        grid[x][i] = battleship;
+        grid[i][x] = ship;
       }
     }
   }
