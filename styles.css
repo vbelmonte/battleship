@@ -54,7 +54,7 @@ table {
   --black: #000000;
   --off-white: #F2F2F2;
   --melrose: #ADC4FF;
-  --periwinkle: #D4E0FF;
+  --periwinkle: rgb(212, 224, 255, 0.5);
   --red: #FF0000;
   --light-red: #FFC6C6;
   --blue: #0000FF;
@@ -229,6 +229,11 @@ main {
 
 .gameboard .ship-cell {
   background-color: var(--periwinkle);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .ship {
