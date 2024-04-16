@@ -48,8 +48,6 @@ export default function Gameboard() {
   }
   
   const placeShip = (x, y, ship, orientation) => {
-    console.log("x: " + x);
-    console.log("y: " + y);
     const shipSize = ship.getShipLength();
 
     if (orientation === "horizontal") {
