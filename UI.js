@@ -17,11 +17,11 @@ function generateShipCellUI(shipSize, orientation) {
   div.classList.add("ship-cell");
 
   if (orientation === "horizontal") {
-    const width = 2.275 * shipSize;
+    const width = (2.1875 * shipSize) + (0.125 * (shipSize - 1));
     div.style.width = width + 'rem';
-    div.style.height = 2.2 + 'rem';
+    div.style.height = 2.1875 + 'rem';
   } else {
-    const height = 2.275 * shipSize;
+    const height = (2.1875 * shipSize) + (0.125 * (shipSize - 1));
     div.style.height = height + 'rem';
   }
 
