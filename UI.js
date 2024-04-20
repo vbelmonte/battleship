@@ -1,3 +1,5 @@
+import { checkForOpponentShip } from "./MainGame";
+
 function createGameBoardUI(player) {
   const board = document.getElementById(player + "-board");
 
@@ -6,6 +8,36 @@ function createGameBoardUI(player) {
     const num = i;
     tile.classList.add("cell");
     tile.id = player + "-" + num.toString();
+
+    board.appendChild(tile);
+  }
+}
+
+function createGameBoardUIOpponent(player) {
+  const board = document.getElementById(player + "-board");
+
+  for (let i = 0;  i < 100; i++) {
+    const tile = document.createElement("div");
+    const num = i;
+    tile.classList.add("cell");
+    tile.id = player + "-" + num.toString();
+
+    tile.addEventListener("click", function(e){
+      const result = checkForOpponentShip(e);
+
+      //if there's a hit, mark the cell as a "hit", and the respective ship's spot as a "hit"
+      if (result) {
+        //mark cell as a hit
+        tile.classList.add("hit");
+        //mark ship on list of ships as a hit
+      }
+
+      //if it's a miss, mark the cell as a miss
+      else {
+        //mark the cell as a miss
+        tile.classList.add("miss");
+      }
+    });
 
     board.appendChild(tile);
   }
@@ -41,4 +73,4 @@ function placeShipOnGameBoardUI(x, y, ship, orientation, player) {
   shipContainer.appendChild(shipCell);
 }
 
-export {createGameBoardUI, placeShipOnGameBoardUI};
+export {createGameBoardUI, createGameBoardUIOpponent, placeShipOnGameBoardUI};

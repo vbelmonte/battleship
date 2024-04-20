@@ -1,7 +1,42 @@
 import player from "./Player";
 import ship from "./Ship";
-import { createGameBoardUI, placeShipOnGameBoardUI } from "./UI";
+import { createGameBoardUI, createGameBoardUIOpponent, placeShipOnGameBoardUI } from "./UI";
 
+const player1 = new player();
+const computer = new player();
+
+const p1_gameBoard = player1.getGameBoard();
+const c_gameBoard = computer.getGameBoard();
+
+function convertCellToGridCoordinates(element) {
+  const array = element.split('-');
+  const num = array[1];
+
+  const x = num % 10;
+  const y = Math.floor(num/10);
+
+  return [x, y];
+}
+
+function checkForOpponentShip(e) {
+  const oppGrid = c_gameBoard.getGrid();
+  const array = convertCellToGridCoordinates(e.target.id);
+  const x = array[0];
+  const y = array[1];
+
+  if (oppGrid[y][x] !== null) {
+    console.log("hit!");
+    return true;
+  } else {
+    console.log("miss!");
+    return false;
+  }
+
+  //determine if cell contains a ship
+    //get UI cell and match it to the backend grid
+    //if cell contains a ship, mark as a "hit"
+    //if cell does not contain a ship, mark as a "miss"
+}
 
 function verifyShipPlacementSize(x, y, shipLength, orientation) {
   if (orientation === "horizontal") {
@@ -65,6 +100,27 @@ function randomizeShipPlacement(ships, gameBoard, player) {
   console.log(gameBoard.getGrid());
 }
 
+function randomizeShipPlacementOpponent(ships, gameBoard, player) {
+  const orientations = ["horizontal", "vertical"];
+
+  let i = 0;
+
+  while (i < ships.length) {
+    const x = Math.floor(Math.random() * 10);
+    const y = Math.floor(Math.random() * 10);
+    const orientation = orientations[Math.floor(Math.random() * 2)];
+    const placementSize = verifyShipPlacementSize(x, y, ships[i].getShipLength(), orientation);
+
+    if (placementSize) {
+      const placementVacant = verifyShipPlacementVacant(x, y, ships[i].getShipLength(), orientation, gameBoard);
+      if (placementVacant) {
+        gameBoard.placeShip(x, y, ships[i], orientation);
+        i++;
+      }
+    }
+  }
+}
+
 function placeShips(p1_gameBoard, c_gameBoard) {
   const p1_carrier = new ship(5);
   const p1_battleship = new ship(4);
@@ -96,7 +152,7 @@ function placeShips(p1_gameBoard, c_gameBoard) {
     c_destroyer
   ];
 
-  randomizeShipPlacement(c_ships, c_gameBoard, "computer");
+  randomizeShipPlacementOpponent(c_ships, c_gameBoard, "computer");
 }
 
 function determineTurn() {
@@ -105,16 +161,16 @@ function determineTurn() {
 }
 
 function MainGame() {
-  const player1 = new player();
+  /*const player1 = new player();
   const computer = new player();
 
   const p1_gameBoard = player1.getGameBoard();
-  const c_gameBoard = computer.getGameBoard();
+  const c_gameBoard = computer.getGameBoard();*/
 
-  createGameBoardUI("computer");
+  createGameBoardUIOpponent("computer");
   createGameBoardUI("p1");
 
   placeShips(p1_gameBoard, c_gameBoard);
 }
 
-export { MainGame, verifyShipPlacementSize, randomizeShipPlacement }
+export { MainGame, verifyShipPlacementSize, randomizeShipPlacement, checkForOpponentShip }
