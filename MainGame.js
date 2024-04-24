@@ -19,23 +19,19 @@ function convertCellToGridCoordinates(element) {
 }
 
 function checkForOpponentShip(e) {
-  const oppGrid = c_gameBoard.getGrid();
   const array = convertCellToGridCoordinates(e.target.id);
   const x = array[0];
   const y = array[1];
 
-  if (oppGrid[y][x] !== null) {
+  const result = c_gameBoard.receiveAttack(x, y);
+
+  if (result === true) {
     console.log("hit!");
     return true;
   } else {
     console.log("miss!");
     return false;
   }
-
-  //determine if cell contains a ship
-    //get UI cell and match it to the backend grid
-    //if cell contains a ship, mark as a "hit"
-    //if cell does not contain a ship, mark as a "miss"
 }
 
 function verifyShipPlacementSize(x, y, shipLength, orientation) {
